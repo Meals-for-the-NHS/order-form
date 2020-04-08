@@ -58,7 +58,7 @@ export default class OrderDay extends React.Component {
                 {this.props.day.dietaryRequirements.map((dietaryRequirement, index) => {
                   return (
                     <li className="mt-3" key={index}>
-                      <DietaryRequirement {...dietaryRequirement} />
+                      <DietaryRequirement {...dietaryRequirement} percentChange={this.props.updatePercentage} />
                       {index === this.props.day.dietaryRequirements.length - 1 &&
                         <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl float-right" onClick={this.addDietaryRequirementClick}>Add another dietary requirement</button>
                       }
@@ -82,5 +82,6 @@ OrderDay.propTypes = {
   day: PropTypes.object,
   dietaryRequirements: PropTypes.arrayOf(PropTypes.object),
   index: PropTypes.number,
-  updateQuantity: PropTypes.func
+  updateQuantity: PropTypes.func,
+  updatePercentage: PropTypes.func,
 }

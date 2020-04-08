@@ -18,6 +18,7 @@ export default class Form extends React.Component {
     this.addAnotherDay = this.addAnotherDay.bind(this)
     this.addDietaryRequirement = this.addDietaryRequirement.bind(this)
     this.updateQuantity = this.updateQuantity.bind(this)
+    this.updatePercentage = this.updatePercentage.bind(this)
   }
 
   formattedDate(date) {
@@ -63,6 +64,25 @@ export default class Form extends React.Component {
     this.setState({ days: days })
   }
 
+  updatePercentage(dayIndex, dietaryReqIndex, percentage) {
+    let day = this.state.days[dayIndex]
+    let dietaryReq = day.dietaryRequirements[dietaryReqIndex]
+
+    dietaryReq.percentage = percentage
+
+    day.dietaryRequirements[dietaryReq] = dietaryReq
+    let days = this.state.days
+
+    days[dayIndex] = {
+      ...day,
+      dietaryRequirements: dietaryReq,
+    }
+
+    this.setState({
+      days: days
+    })
+  }
+
 
   updateQuantity(index, quantity) {
     let day = this.state.days[index]
@@ -96,6 +116,7 @@ export default class Form extends React.Component {
                 dietaryRequirements={day.dietaryRequirements}
                 index={index}
                 updateQuantity={this.updateQuantity}
+                updatePercentage={this.updatePercentage}
               />
             </li>
           })
