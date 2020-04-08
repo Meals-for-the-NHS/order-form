@@ -37,7 +37,7 @@ export default class Form extends React.Component {
             defaultValue="0"
             className="w-16 text-right ml-2 mr-2 border-blue-300 border-2 rounded-md"
           />
-          for
+          meals for
           <input className="ml-3 border-blue-300 border-2 rounded-md" type="date"
             defaultValue={this.props.date}
           />
@@ -54,9 +54,9 @@ export default class Form extends React.Component {
         </div>
 
         {this.state.dietaryRequirements.length > 0 &&
-          <div className='mt-4 pl-6' >
+          <div className='mt-4 pl-6 mb-10 border-blue-300 border-b-2 pb-3' >
             <div>
-              <h4 className="text-3xl mb-3">Dietary requirements</h4>
+              <h4 className="text-xl mb-3">Dietary requirements</h4>
 
               <ul>
                 {this.state.dietaryRequirements.map((dietaryRequirement, index) => {
