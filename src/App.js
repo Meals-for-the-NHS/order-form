@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import "../src/styles/tailwind.css"
+import Form from './components/form';
 
 function App() {
+  const state = {
+    name: "UCL Hospital"
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <React.Fragment>
+      <header className="bg-blue-700 text-white w-screen text-center"><h1 className="text-6xl content-center font-bold italic">Meals for the NHS</h1>
       </header>
-    </div>
+      <div className="container mx-auto">
+        <Form name={state.name} />
+      </div>
+    </React.Fragment>
   );
 }
 
