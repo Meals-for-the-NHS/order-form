@@ -35,6 +35,7 @@ export default class Form extends React.Component {
     days.push(
       {
         date: this.formattedDate(this.nextDate(days.length, lastDay.date)),
+        quantity: lastDay.quantity,
         dietaryRequirements: lastDay.dietaryRequirements,
       }
     )
@@ -42,7 +43,9 @@ export default class Form extends React.Component {
     this.setState({ days: days })
   }
 
-  addDietaryRequirement(day) {
+  addDietaryRequirement(index) {
+    console.log(index)
+    let day = this.state.days[index]
     let existingRequirements = day.dietaryRequirements
 
     existingRequirements.push(
@@ -51,7 +54,13 @@ export default class Form extends React.Component {
         option: null,
       }
     )
-    this.setState({ dietaryRequirements: existingRequirements })
+
+    let days = this.state.days
+    days[index] = {
+      ...day,
+      dietaryRequirements: existingRequirements,
+    }
+    this.setState({ days: days })
   }
 
 

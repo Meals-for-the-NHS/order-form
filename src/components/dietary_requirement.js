@@ -31,5 +31,5 @@ export default class DietaryRequirement extends React.Component {
 }
 
 DietaryRequirement.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
 }
