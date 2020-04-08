@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import OrderDay from './order_day';
 
 export default class Form extends React.Component {
@@ -7,12 +8,16 @@ export default class Form extends React.Component {
     this.state = {
       days: [
         {
-          date: this.formattedDate(new Date())
+          date: this.formattedDate(new Date()),
+          dietaryRequirements: [],
+          quantity: 0,
         }
       ]
     }
 
     this.addAnotherDay = this.addAnotherDay.bind(this)
+    this.addDietaryRequirement = this.addDietaryRequirement.bind(this)
+    this.updateQuantity = this.updateQuantity.bind(this)
   }
 
   formattedDate(date) {
@@ -25,15 +30,38 @@ export default class Form extends React.Component {
 
     let days = this.state.days
 
-    const lastDay = this.state.days.slice(-1).pop().date
+    const lastDay = days.slice(-1).pop()
 
     days.push(
       {
-        date: this.formattedDate(this.nextDate(days.length, lastDay))
+        date: this.formattedDate(this.nextDate(days.length, lastDay.date)),
+        dietaryRequirements: lastDay.dietaryRequirements,
       }
     )
 
-    console.log('clicked')
+    this.setState({ days: days })
+  }
+
+  addDietaryRequirement(day) {
+    let existingRequirements = day.dietaryRequirements
+
+    existingRequirements.push(
+      {
+        value: 0,
+        option: null,
+      }
+    )
+    this.setState({ dietaryRequirements: existingRequirements })
+  }
+
+
+  updateQuantity(index, quantity) {
+    let day = this.state.days[index]
+
+    day.quantity = quantity
+
+    let days = this.state.days
+    days[index] = day
 
     this.setState({ days: days })
   }
@@ -44,17 +72,31 @@ export default class Form extends React.Component {
     result.setDate(result.getDate() + days);
     return result;
   }
+
   render() {
     return (
       <React.Fragment>
         <h2 className="text-4xl mt-5">Ordering for {this.props.name}</h2>
         <ul>
           {this.state.days.map((day, index) => {
-            return <li key={index} className="mt-4"><OrderDay date={day.date} addAnotherDay={this.addAnotherDay} /></li>
+            return <li key={index} className="mt-4">
+              <OrderDay
+                addAnotherDay={this.addAnotherDay}
+                addDietaryRequirement={this.addDietaryRequirement}
+                day={day}
+                dietaryRequirements={day.dietaryRequirements}
+                index={index}
+                updateQuantity={this.updateQuantity}
+              />
+            </li>
           })
           }
         </ul>
       </React.Fragment>
     );
   }
+}
+
+Form.propTypes = {
+  name: PropTypes.string,
 }

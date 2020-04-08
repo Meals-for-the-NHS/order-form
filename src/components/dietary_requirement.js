@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export default class DietaryRequirement extends React.Component {
   render() {
@@ -27,4 +28,8 @@ export default class DietaryRequirement extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+DietaryRequirement.propTypes = {
+  value: PropTypes.string,
 }
