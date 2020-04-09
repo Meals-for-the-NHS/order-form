@@ -35,7 +35,7 @@ export default class DietaryRequirement extends React.Component {
         <input
           type="number"
           name="percentage"
-          defaultValue={this.props.value}
+          defaultValue={this.props.percentage}
           min="0"
           max="100"
           className="w-16 text-right mr-4 border-blue-300 border-2 rounded-md"
@@ -57,7 +57,7 @@ export default class DietaryRequirement extends React.Component {
 }
 
 DietaryRequirement.propTypes = {
-  value: PropTypes.number,
+  percentage: PropTypes.string,
   type: PropTypes.oneOf(FOOD_TYPES.map((x) => x.value)),
   dayIndex: PropTypes.number,
   reqIndex: PropTypes.number,

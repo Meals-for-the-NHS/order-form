@@ -63,6 +63,7 @@ export default class OrderDay extends React.Component {
                         dayIndex={this.props.index}
                         reqIndex={index}
                         updatePercentage={this.props.updatePercentage}
+                        percentage={dietaryRequirement.percentage}
                       />
                       {index === this.props.dietaryRequirements.length - 1 &&
                         <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl float-right" onClick={this.addDietaryRequirementClick}>Add another dietary requirement</button>

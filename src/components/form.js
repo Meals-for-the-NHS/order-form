@@ -45,13 +45,12 @@ export default class Form extends React.Component {
   }
 
   addDietaryRequirement(index) {
-    console.log(index)
     let day = this.state.days[index]
     let existingRequirements = day.dietaryRequirements
 
     existingRequirements.push(
       {
-        value: 0,
+        percentage: "0",
         option: null,
       }
     )
@@ -65,7 +64,6 @@ export default class Form extends React.Component {
   }
 
   updatePercentage(dayIndex, dietaryReqIndex, percentage) {
-    console.log('clicked')
     let day = this.state.days[dayIndex]
     let dietaryReq = day.dietaryRequirements[dietaryReqIndex]
 
