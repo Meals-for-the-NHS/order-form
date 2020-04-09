@@ -13,6 +13,21 @@ const FOOD_TYPES = [
 ]
 
 export default class DietaryRequirement extends React.Component {
+
+  // handleFoodTypeSelectionChange(e) {
+  //   this.props.
+  // }
+
+  constructor() {
+    super()
+
+    this.handlePercentageChange = this.handlePercentageChange.bind(this)
+  }
+
+  handlePercentageChange(e) {
+    this.props.updatePercentage(this.props.dayIndex, this.props.reqIndex, e.target.value)
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -24,11 +39,16 @@ export default class DietaryRequirement extends React.Component {
           min="0"
           max="100"
           className="w-16 text-right mr-4 border-blue-300 border-2 rounded-md"
+          onChange={this.handlePercentageChange}
         />
 
-        <select name="food_type" className="border-blue-300 border-2 rounded-md">
+        <select name="food_type" className="border-blue-300 border-2 rounded-md" value={this.props.type}>
           {FOOD_TYPES.map((type) => {
-            return <option key={type.value} value={type.value} label={type.label} selected={this.props.type === type.value} />
+            return <option
+              key={type.value}
+              value={type.value}
+              label={type.label}
+            />
           })}
         </select>
       </React.Fragment>
@@ -38,5 +58,8 @@ export default class DietaryRequirement extends React.Component {
 
 DietaryRequirement.propTypes = {
   value: PropTypes.number,
-  type: PropTypes.oneOf(FOOD_TYPES.map((x) => x.value))
+  type: PropTypes.oneOf(FOOD_TYPES.map((x) => x.value)),
+  dayIndex: PropTypes.number,
+  reqIndex: PropTypes.number,
+  updatePercentage: PropTypes.func,
 }

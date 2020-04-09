@@ -10,7 +10,7 @@ export default class Form extends React.Component {
         {
           date: this.formattedDate(new Date()),
           dietaryRequirements: [],
-          quantity: 0,
+          quantity: "0",
         }
       ]
     }
@@ -65,17 +65,17 @@ export default class Form extends React.Component {
   }
 
   updatePercentage(dayIndex, dietaryReqIndex, percentage) {
+    console.log('clicked')
     let day = this.state.days[dayIndex]
     let dietaryReq = day.dietaryRequirements[dietaryReqIndex]
 
     dietaryReq.percentage = percentage
 
-    day.dietaryRequirements[dietaryReq] = dietaryReq
+    day.dietaryRequirements[dietaryReqIndex] = dietaryReq
     let days = this.state.days
 
     days[dayIndex] = {
       ...day,
-      dietaryRequirements: dietaryReq,
     }
 
     this.setState({
@@ -112,8 +112,9 @@ export default class Form extends React.Component {
               <OrderDay
                 addAnotherDay={this.addAnotherDay}
                 addDietaryRequirement={this.addDietaryRequirement}
-                day={day}
+                date={day.date}
                 dietaryRequirements={day.dietaryRequirements}
+                quantity={day.quantity}
                 index={index}
                 updateQuantity={this.updateQuantity}
                 updatePercentage={this.updatePercentage}
