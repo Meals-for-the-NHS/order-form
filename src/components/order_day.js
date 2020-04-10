@@ -10,6 +10,7 @@ export default class OrderDay extends React.Component {
     this.updateQuantityChange = this.updateQuantityChange.bind(this)
     this.updateDate = this.updateDate.bind(this)
     this.updateContactName = this.updateContactName.bind(this)
+    this.updateContactNumber = this.updateContactNumber.bind(this)
   }
 
   addDietaryRequirementClick(e) {
@@ -27,6 +28,10 @@ export default class OrderDay extends React.Component {
 
   updateContactName(e) {
     this.props.updateContactName(this.props.index, e.target.value)
+  }
+
+  updateContactNumber(e) {
+    this.props.updateContactNumber(this.props.index, e.target.value)
   }
 
   render() {
@@ -71,8 +76,9 @@ export default class OrderDay extends React.Component {
             <input
               className="w-auto ml-2 mr-2 border-blue-300 border-2 rounded-md focus:outline-none focus:border-blue-600"
               type="string"
-              name="contact_name"
+              name="contact_number"
               defaultValue={this.props.contact.number}
+              onChange={this.updateContactNumber}
             />
           </div>
 
@@ -123,6 +129,7 @@ OrderDay.propTypes = {
   index: PropTypes.number,
   quantity: PropTypes.string,
   updateContactName: PropTypes.func,
+  updateContactNumber: PropTypes.func,
   updateDate: PropTypes.func,
   updatePercentage: PropTypes.func,
   updateQuantity: PropTypes.func,
