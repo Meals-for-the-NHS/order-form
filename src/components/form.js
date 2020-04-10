@@ -33,33 +33,30 @@ export default class Form extends React.Component {
 
     const lastDay = days.slice(-1).pop()
 
-    days.push(
-      {
-        date: this.formattedDate(this.nextDate(days.length, lastDay.date)),
+    this.setState(prevState => ({
+      days: [...prevState.days, {
+        date: this.formattedDate(this.nextDate(lastDay.date)),
         quantity: lastDay.quantity,
         dietaryRequirements: lastDay.dietaryRequirements,
-      }
-    )
-
-    this.setState({ days: days })
+      }]
+    }))
   }
 
   addDietaryRequirement(index) {
-    let day = this.state.days[index]
-    let existingRequirements = day.dietaryRequirements
+    let day = { ...this.state.days[index] }
 
-    existingRequirements.push(
+    let reqs = Object.assign([], day.dietaryRequirements)
+
+    reqs.push(
       {
         percentage: "0",
         option: null,
       }
     )
+    day.dietaryRequirements = reqs
 
-    let days = this.state.days
-    days[index] = {
-      ...day,
-      dietaryRequirements: existingRequirements,
-    }
+    let days = [...this.state.days]
+    days[index] = day
     this.setState({ days: days })
   }
 
@@ -93,10 +90,9 @@ export default class Form extends React.Component {
     this.setState({ days: days })
   }
 
-  nextDate(days, date) {
+  nextDate(date) {
     const result = new Date(date);
-    console.log(result)
-    result.setDate(result.getDate() + days);
+    result.setDate(result.getDate() + 1);
     return result;
   }
 
@@ -112,10 +108,10 @@ export default class Form extends React.Component {
                 addDietaryRequirement={this.addDietaryRequirement}
                 date={day.date}
                 dietaryRequirements={day.dietaryRequirements}
-                quantity={day.quantity}
                 index={index}
-                updateQuantity={this.updateQuantity}
+                quantity={day.quantity}
                 updatePercentage={this.updatePercentage}
+                updateQuantity={this.updateQuantity}
               />
             </li>
           })

@@ -10,7 +10,8 @@ export default class OrderDay extends React.Component {
     this.updateQuantityChange = this.updateQuantityChange.bind(this)
   }
 
-  addDietaryRequirementClick() {
+  addDietaryRequirementClick(e) {
+    e.target.remove()
     this.props.addDietaryRequirement(this.props.index)
   }
 
@@ -43,10 +44,6 @@ export default class OrderDay extends React.Component {
             }
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl" onClick={this.props.addAnotherDay}>Add another day</button>
           </div>
-        </div>
-
-        <div>
-
         </div>
 
         {this.props.dietaryRequirements.length > 0 &&
