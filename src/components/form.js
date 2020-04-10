@@ -11,6 +11,10 @@ export default class Form extends React.Component {
           date: this.formattedDate(new Date()),
           dietaryRequirements: [],
           quantity: "0",
+          contact: {
+            name: "",
+            contact_number: "",
+          }
         }
       ]
     }
@@ -19,6 +23,7 @@ export default class Form extends React.Component {
     this.addDietaryRequirement = this.addDietaryRequirement.bind(this)
     this.updateQuantity = this.updateQuantity.bind(this)
     this.updatePercentage = this.updatePercentage.bind(this)
+    this.updateDate = this.updateDate.bind(this)
   }
 
   formattedDate(date) {
@@ -94,6 +99,17 @@ export default class Form extends React.Component {
     return result;
   }
 
+  updateDate(index, newDate) {
+    let day = this.state.days[index]
+
+    day.date = this.formattedDate(new Date(newDate))
+
+    let days = this.state.days
+    days[index] = day
+
+    this.setState({ days: days })
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -108,10 +124,12 @@ export default class Form extends React.Component {
               <OrderDay
                 addAnotherDay={this.addAnotherDay}
                 addDietaryRequirement={this.addDietaryRequirement}
+                contact={day.contact}
                 date={day.date}
                 dietaryRequirements={day.dietaryRequirements}
                 index={index}
                 quantity={day.quantity}
+                updateDate={this.updateDate}
                 updatePercentage={this.updatePercentage}
                 updateQuantity={this.updateQuantity}
               />
