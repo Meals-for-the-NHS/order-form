@@ -38,11 +38,10 @@ export default class OrderDay extends React.Component {
           />
           <div className="float-right">
             {this.props.dietaryRequirements &&
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm mr-3" onClick={this.addDietaryRequirementClick}>
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm" onClick={this.addDietaryRequirementClick}>
                 Add dietary requirements
               </button>
             }
-            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl" onClick={this.props.addAnotherDay}>Add another day</button>
           </div>
         </div>
 

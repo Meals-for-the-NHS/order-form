@@ -27,8 +27,6 @@ export default class Form extends React.Component {
   }
 
   addAnotherDay(e) {
-    e.target.className = `${e.target.className} hidden`
-
     let days = this.state.days
 
     const lastDay = days.slice(-1).pop()
@@ -99,8 +97,12 @@ export default class Form extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h2 className="text-4xl mt-5">Ordering for {this.props.name}</h2>
-        <ul>
+        <div className="mb-3">
+          <h2 className="text-4xl mt-5 float-left">Ordering for {this.props.name}</h2>
+          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl float-right mt-10" onClick={this.addAnotherDay}>Add another day</button>
+          <div className="clearfix"></div>
+        </div>
+        <ul className="clear-both">
           {this.state.days.map((day, index) => {
             return <li key={index} className="mt-4">
               <OrderDay
