@@ -13,7 +13,7 @@ export default class Form extends React.Component {
           quantity: "0",
           contact: {
             name: "",
-            contact_number: "",
+            number: "",
           }
         }
       ]
@@ -24,6 +24,7 @@ export default class Form extends React.Component {
     this.updateQuantity = this.updateQuantity.bind(this)
     this.updatePercentage = this.updatePercentage.bind(this)
     this.updateDate = this.updateDate.bind(this)
+    this.updateContactName = this.updateContactName.bind(this)
   }
 
   formattedDate(date) {
@@ -110,6 +111,17 @@ export default class Form extends React.Component {
     this.setState({ days: days })
   }
 
+  updateContactName(index, newName) {
+    let day = this.state.days[index]
+
+    day.contact.name = newName
+
+    let days = this.state.days
+    days[index] = day
+
+    this.setState({ days: days })
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -129,6 +141,7 @@ export default class Form extends React.Component {
                 dietaryRequirements={day.dietaryRequirements}
                 index={index}
                 quantity={day.quantity}
+                updateContactName={this.updateContactName}
                 updateDate={this.updateDate}
                 updatePercentage={this.updatePercentage}
                 updateQuantity={this.updateQuantity}
