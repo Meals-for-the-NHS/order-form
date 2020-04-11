@@ -6,6 +6,7 @@ export default class Form extends React.Component {
   constructor() {
     super()
     this.state = {
+      showOrderConfirmation: false,
       days: [
         {
           date: this.formattedDate(new Date()),
@@ -21,6 +22,7 @@ export default class Form extends React.Component {
 
     this.addAnotherDay = this.addAnotherDay.bind(this)
     this.addDietaryRequirement = this.addDietaryRequirement.bind(this)
+    this.submitOrder = this.submitOrder.bind(this)
     this.updateQuantity = this.updateQuantity.bind(this)
     this.updatePercentage = this.updatePercentage.bind(this)
     this.updateDate = this.updateDate.bind(this)
@@ -134,6 +136,10 @@ export default class Form extends React.Component {
     this.setState({ days: days })
   }
 
+  submitOrder() {
+    console.log('submit order')
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -163,6 +169,9 @@ export default class Form extends React.Component {
           })
           }
         </ul>
+
+        <button className="text-4xl bg-blue-600 text-white rounded py-2 px-10 mt-4 mx-auto block" onClick={this.submitOrder}>Submit order</button>
+
       </React.Fragment>
     );
   }
