@@ -14,7 +14,6 @@ export default class OrderDay extends React.Component {
   }
 
   addDietaryRequirementClick(e) {
-    e.target.remove()
     this.props.addDietaryRequirement(this.props.index)
   }
 
@@ -100,9 +99,6 @@ export default class OrderDay extends React.Component {
                         updatePercentage={this.props.updatePercentage}
                         percentage={dietaryRequirement.percentage}
                       />
-                      {index === this.props.dietaryRequirements.length - 1 &&
-                        <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded text-sm bl float-right focus:outline-none focus:border-blue-600" onClick={this.addDietaryRequirementClick}>Add another dietary requirement</button>
-                      }
                     </li>
                   )
                 })}
