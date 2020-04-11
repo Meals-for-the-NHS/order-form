@@ -42,9 +42,8 @@ export default class Form extends React.Component {
 
     this.setState(prevState => ({
       days: [...prevState.days, {
+        ...lastDay,
         date: this.formattedDate(this.nextDate(lastDay.date)),
-        quantity: lastDay.quantity,
-        dietaryRequirements: lastDay.dietaryRequirements,
       }]
     }))
   }
